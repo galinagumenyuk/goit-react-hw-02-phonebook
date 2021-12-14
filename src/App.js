@@ -10,10 +10,11 @@ class App extends React.Component {
     contacts: [],
   };
 
-  addContact = (name) => {
+  addContact = ({ name, number }) => {
     const contact = {
       id: shortid.generate(),
       name,
+      number,
     };
     this.setState((prevState) => ({
       contacts: [contact, ...prevState.contacts],

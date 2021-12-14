@@ -1,7 +1,10 @@
 import React from "react";
 
-const Item = ({ name }) => {
-    return <li>{name}</li>
+const Item = ({ name, number }) => {
+    return <li>
+        <span>{name}</span>
+        <span>{number}</span>
+        </li>
  }
 
 export default Item;

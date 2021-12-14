@@ -2,16 +2,20 @@ import React from "react";
 
 
 class Form extends React.Component {
-    state = {name: ""}
+    state = {name: "", number:""}
     
     handleNameChange = (e) => {
         this.setState({ name: e.currentTarget.value});
     }
 
+    handleNumberChange = (e) => {
+        this.setState({ number: e.currentTarget.value});
+    }
+
      handleSubmit = (e) => {
         e.preventDefault();
-         this.props.onSubmit(this.state.name);
-         this.setState({ name: "" });
+         this.props.onSubmit(this.state);
+         this.setState({ name: "", number: ""});
     };
 
         
@@ -28,6 +32,18 @@ class Form extends React.Component {
                         required
                         value={this.state.name}
                         onChange={this.handleNameChange}
+                    />
+                </label>
+                <label>
+                    number
+                    <input
+                    type="tel"
+                    name="number"
+                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                    title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                        required
+                        value={this.state.number}
+                        onChange={this.handleNumberChange}
                     />
                 </label>
                 <button type="submit"> Add contact </button>
