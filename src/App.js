@@ -33,6 +33,15 @@ class App extends React.Component {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
+
+  deleteContact = (contactId) => {
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter(
+        (contact) => contact.id !== contactId
+      ),
+    }));
+  };
+
   render() {
     const filteredContacts = this.getFilteredContact();
 
@@ -42,7 +51,10 @@ class App extends React.Component {
         <Form onSubmit={this.addContact} />
         <ListTitle>Contacts</ListTitle>
         <Filter value={this.state.filter} onChange={this.handleFilterChange} />
-        <Contacts contacts={filteredContacts} />
+        <Contacts
+          contacts={filteredContacts}
+          onDeleteContact={this.deleteContact}
+        />
       </Container>
     );
   }

@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"; 
+import { AddButton } from "./Form.styled";
 
 
 class Form extends React.Component {
@@ -46,7 +47,7 @@ class Form extends React.Component {
                         onChange={this.handleNumberChange}
                     />
                 </label>
-                <button type="submit"> Add contact </button>
+                <AddButton type="submit"> Add contact </AddButton>
             </form>
         )
     }
