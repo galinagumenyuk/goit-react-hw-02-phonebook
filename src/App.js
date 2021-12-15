@@ -1,4 +1,4 @@
-import "./App.css";
+import { Container, ListTitle } from "./App.styled.jsx";
 import shortid from "shortid";
 // import PropTypes from "prop-types";
 import React from "react";
@@ -27,20 +27,23 @@ class App extends React.Component {
     this.setState({ filter: e.currentTarget.value });
   };
 
-  render() {
+  getFilteredContact = () => {
     const normalizedFilter = this.state.filter.toLowerCase();
-    const filteredContacts = this.state.contacts.filter((contact) =>
+    return this.state.contacts.filter((contact) =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
+  };
+  render() {
+    const filteredContacts = this.getFilteredContact();
 
     return (
-      <div className="container">
+      <Container>
         <h1>Phonebook</h1>
         <Form onSubmit={this.addContact} />
-        <p>Contacts</p>
+        <ListTitle>Contacts</ListTitle>
         <Filter value={this.state.filter} onChange={this.handleFilterChange} />
         <Contacts contacts={filteredContacts} />
-      </div>
+      </Container>
     );
   }
 }

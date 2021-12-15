@@ -1,12 +1,13 @@
 import React from "react";
 import Item from "./Item";
+import { ContactItem } from "./Contacts.styled";
 
 const Contacts = ({ contacts }) => {
-       return <ul>
+       return <ContactItem>
             {contacts.map(contact => (
                  <Item key={contact.id} name={contact.name} number={contact.number}/>
              ))}
-        </ul>
+        </ContactItem>
  }
 
 export default Contacts;
