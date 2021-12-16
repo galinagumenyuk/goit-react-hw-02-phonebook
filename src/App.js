@@ -1,12 +1,21 @@
 import { Container, ListTitle } from "./App.styled.jsx";
 import shortid from "shortid";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import React from "react";
 import Form from "./components/form/Form.jsx";
 import Contacts from "./components/contacts/Contacts.jsx";
 import Filter from "./components/filter/Filter.jsx";
 
 class App extends React.Component {
+  static propTypes = {
+    contacts: PropTypes.array,
+    value: PropTypes.string,
+    onSubmit: PropTypes.func,
+    onValidate: PropTypes.func,
+    onChange: PropTypes.func,
+    onDeleteContact: PropTypes.func,
+  };
+
   state = {
     contacts: [],
     filter: "",
@@ -42,13 +51,20 @@ class App extends React.Component {
     }));
   };
 
+  validateContact = (contactName) => {
+    let isDuplicate = !!this.state.contacts.find(
+      (contact) => contact.name === contactName
+    );
+    return !isDuplicate;
+  };
+
   render() {
     const filteredContacts = this.getFilteredContact();
 
     return (
       <Container>
         <h1>Phonebook</h1>
-        <Form onSubmit={this.addContact} />
+        <Form onSubmit={this.addContact} onValidate={this.validateContact} />
         <ListTitle>Contacts</ListTitle>
         <Filter value={this.state.filter} onChange={this.handleFilterChange} />
         <Contacts
