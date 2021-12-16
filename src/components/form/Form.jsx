@@ -3,7 +3,7 @@ import { AddButton } from "./Form.styled";
 
 
 class Form extends React.Component {
-    state = {name: "", number:"", disabled: false}
+    state = {name: "", number:""}
     
     handleNameChange = (e) => {
         this.setState({ name: e.currentTarget.value});
@@ -22,7 +22,7 @@ class Form extends React.Component {
     disabledButton = () => {
         if (!this.props.onValidate(this.state.name)) {
             alert(`${this.state.name} is already in contacts`);
-            this.setState({ disabled: true });
+            this.setState({ name: "", number: ""});
         }  
     }
         
@@ -53,7 +53,7 @@ class Form extends React.Component {
                         onChange={this.handleNumberChange}
                     />
                 </label>
-                <AddButton type="submit" disabled={this.state.disabled}> Add contact </AddButton>
+                <AddButton type="submit"> Add contact </AddButton>
             </form>
         )
     }
